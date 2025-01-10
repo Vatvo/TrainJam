@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://2xki1xc60gwq"]
+
+[ext_resource type="Script" path="res://objects/train_car/train_car.gd" id="1_mlxto"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crc6y"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_foh08"]
+
+[node name="TrainCar" type="Area3D" node_paths=PackedStringArray("collision_shape", "mesh", "connect_point")]
+script = ExtResource("1_mlxto")
+collision_shape = NodePath("CollisionShape3D")
+mesh = NodePath("MeshInstance3D")
+connect_point = NodePath("ConnectPoint")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("BoxShape3D_crc6y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("BoxMesh_foh08")
+
+[node name="ConnectPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
