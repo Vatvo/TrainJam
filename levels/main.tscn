@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://12koe6sah6r1"]
+
+[ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
+
+[sub_resource type="Environment" id="Environment_epp8i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2ysq"]
+albedo_color = Color(0, 0.627451, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2cy4w"]
+lightmap_size_hint = Vector2i(3840, 2160)
+material = SubResource("StandardMaterial3D_j2ysq")
+size = Vector2(16, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c2e15"]
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.656651, -0.645553, 0.389961, -0.748088, -0.623175, 0.228075, 0.0957796, -0.441491, -0.892139, -0.0112739, 6.67442, 7.75954)
+light_indirect_energy = 0.0
+shadow_enabled = true
+shadow_bias = 5.0
+shadow_normal_bias = 1.0
+shadow_blur = 4.471
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.485939, 0.873993, 0, -0.873993, 0.485939, 0, 6.80806, 4.12882)
+projection = 1
+fov = 30.1
+size = 9.0
+far = 8000.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_epp8i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2cy4w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0.000295759, -0.000553246, -0.000295608, 1, 0.000264221, 0.000553327, -0.000264053, 1, 6.65817, 0.111132, 3.24297)
+material_override = ExtResource("1_p36se")
+mesh = SubResource("BoxMesh_c2e15")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596133, 0.111132, -5.48648)
+material_override = ExtResource("1_p36se")
+mesh = SubResource("BoxMesh_c2e15")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2744, 0.111132, -0.88138)
+mesh = SubResource("BoxMesh_c2e15")
+surface_material_override/0 = ExtResource("1_p36se")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144743, 0.111132, 6.70583)
+material_override = ExtResource("1_p36se")
+mesh = SubResource("BoxMesh_c2e15")
