@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=10 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
+[ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="2_uu4mb"]
+[ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="3_e0wtn"]
+[ext_resource type="Script" path="res://objects/shop/shop.gd" id="3_xv0te"]
+[ext_resource type="Script" path="res://objects/card/card.gd" id="5_d7vx2"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 
@@ -57,3 +61,48 @@ surface_material_override/0 = ExtResource("1_p36se")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144743, 0.111132, 6.70583)
 material_override = ExtResource("1_p36se")
 mesh = SubResource("BoxMesh_c2e15")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+texture = ExtResource("3_e0wtn")
+
+[node name="Shop" type="Node" parent="CanvasLayer"]
+script = ExtResource("3_xv0te")
+
+[node name="Slot 1" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 111.0
+offset_top = 910.0
+offset_right = 247.0
+offset_bottom = 1046.0
+icon = ExtResource("2_uu4mb")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("5_d7vx2")
+price = 500
+
+[node name="Slot 2" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 318.0
+offset_top = 910.0
+offset_right = 454.0
+offset_bottom = 1046.0
+icon = ExtResource("2_uu4mb")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("5_d7vx2")
+price = 800
+
+[node name="Slot 3" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 520.0
+offset_top = 910.0
+offset_right = 656.0
+offset_bottom = 1046.0
+icon = ExtResource("2_uu4mb")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("5_d7vx2")
+price = 1100
