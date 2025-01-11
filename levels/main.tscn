@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=7 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
-[ext_resource type="PackedScene" uid="uid://co8qt7o6pchfw" path="res://objects/train/train.tscn" id="3_qkoly"]
-[ext_resource type="PackedScene" uid="uid://2xki1xc60gwq" path="res://objects/train_car/train_car.tscn" id="5_qguge"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -74,17 +72,3 @@ mesh = SubResource("BoxMesh_c2e15")
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2844, 0.0354832, -0.0226856)
 curve = SubResource("Curve3D_sjcbk")
-
-[node name="Train" parent="." node_paths=PackedStringArray("_train_cars") instance=ExtResource("3_qkoly")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2661, 9.53674e-07, -0.271246)
-cars_amount = 0
-_train_cars = [NodePath("TrainHead"), NodePath("TrainCar1"), NodePath("Caboose")]
-
-[node name="TrainHead" parent="Train" instance=ExtResource("5_qguge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="TrainCar2" parent="Train" instance=ExtResource("5_qguge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-
-[node name="Caboose" parent="Train" instance=ExtResource("5_qguge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

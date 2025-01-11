@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqotelify1qe3"]
+
+[ext_resource type="Script" path="res://objects/train_car/train_car_path_follow/train_car_path_follow.gd" id="1_bq8cf"]
+
+[node name="TrainCarPathFollow" type="PathFollow3D" node_paths=PackedStringArray("remote_transform")]
+script = ExtResource("1_bq8cf")
+remote_transform = NodePath("RemoteTransform3D")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]

@@ -6,6 +6,12 @@ extends Node3D
 @export_category("Train Car Settings")
 @export_range(1, 999, 1, "or_greater") var cars_amount : int :
 	set(set_value):
+		if not Engine.is_editor_hint():
+			return
+		
+		if not is_node_ready():
+			return
+		
 		if cars_amount == set_value:
 			return
 		
@@ -32,14 +38,18 @@ extends Node3D
 		
 		var attachment_point : Vector3 = Vector3.ZERO
 		for train_car : TrainCar in _train_cars:
-			train_car.position = attachment_point
+			train_car.position = attachment_point - train_car.start_connect_point.position
 			add_child(train_car)
 			train_car.owner = get_tree().edited_scene_root
-			attachment_point = self.to_local(train_car.connect_point.get_global_position())
+			attachment_point = self.to_local(train_car.end_connect_point.get_global_position())
 
 @export var train_head_packed_scene : PackedScene
 @export var middle_segments_packed_scene : PackedScene
 @export var caboose_packed_scene : PackedScene
+
+@export_category("Movement Settings")
+## meters per second
+@export var speed : float
 
 @export_category("Important Values")
 # --- node linkers ---
@@ -47,11 +57,12 @@ extends Node3D
 
 # --- resources ---
 @export_subgroup("Resources")
+@export var train_car_path_follow_packed_scene : PackedScene 
 
 # --- public variables ---
 
 # --- private variables ---
-@export_storage var _train_cars : Array[TrainCar]
+@export var _train_cars : Array[TrainCar]
 
 # --- constants ---
 
@@ -60,9 +71,21 @@ extends Node3D
 # --- method overrides ---
 
 # --- public methods ---
+func start_on_follow_path(path : Path3D) -> void:
+	global_position = path.global_position
+	
+	for train_car : TrainCar in _train_cars:
+		var train_car_path_follow : TrainCarPathFollow = train_car_path_follow_packed_scene.instantiate() as TrainCarPathFollow
+		train_car_path_follow.start(train_car, path, speed)
+		print(train_car.get_length() / speed)
+		await get_tree().create_timer(train_car.get_length() / speed).timeout
+		print("dunzo!")
+
 func delete_all_train_cars() -> void:
-	for train_car in _train_cars:
-		train_car.queue_free()
+	for child : Node in get_children(true):
+		if child is TrainCar:
+			child.queue_free()
+	
 	_train_cars = []
 
 func get_train_cars() -> Array[TrainCar]:
