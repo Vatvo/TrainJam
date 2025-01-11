@@ -1,6 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=15 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
+[ext_resource type="Script" path="res://objects/tower_placer/tower_placer.gd" id="2_l7tu0"]
+[ext_resource type="Script" path="res://objects/shop/shop.gd" id="2_u5dic"]
+[ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="3_ogqp5"]
+[ext_resource type="Script" path="res://objects/card/card.gd" id="4_qi30k"]
+[ext_resource type="Texture2D" uid="uid://4hjn47x7l0jo" path="res://Images/dollar.webp" id="5_x2jtb"]
+[ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="6_kcut4"]
+[ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="7_drara"]
+[ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="8_w1i4s"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -25,7 +33,7 @@ point_count = 5
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.656651, -0.645553, 0.389961, -0.748088, -0.623175, 0.228075, 0.0957796, -0.441491, -0.892139, -0.0112739, 6.67442, 7.75954)
+transform = Transform3D(0.656651, -0.645554, 0.389961, -0.493752, 0.0228814, 0.869301, -0.570104, -0.763372, -0.303719, -0.0112739, 6.67442, 7.75954)
 light_indirect_energy = 0.0
 light_bake_mode = 1
 shadow_enabled = true
@@ -72,3 +80,120 @@ mesh = SubResource("BoxMesh_c2e15")
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2844, 0.0354832, -0.0226856)
 curve = SubResource("Curve3D_sjcbk")
+
+[node name="TowerPlacer" type="Node" parent="."]
+script = ExtResource("2_l7tu0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Shop" type="Node" parent="CanvasLayer"]
+script = ExtResource("2_u5dic")
+
+[node name="Slot 1" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 46.0
+offset_top = 906.0
+offset_right = 182.0
+offset_bottom = 1042.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 500
+
+[node name="Slot 2" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 228.0
+offset_top = 906.0
+offset_right = 364.0
+offset_bottom = 1042.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 800
+
+[node name="Slot 3" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 427.0
+offset_top = 906.0
+offset_right = 563.0
+offset_bottom = 1042.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 1100
+
+[node name="Slot 4" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 618.0
+offset_top = 906.0
+offset_right = 754.0
+offset_bottom = 1042.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 1400
+
+[node name="Slot 5" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 838.0
+offset_top = 909.0
+offset_right = 974.0
+offset_bottom = 1045.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 1700
+
+[node name="Slot 6" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 1055.0
+offset_top = 906.0
+offset_right = 1191.0
+offset_bottom = 1042.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 2000
+
+[node name="Slot 7" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 1266.0
+offset_top = 909.0
+offset_right = 1402.0
+offset_bottom = 1045.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 2300
+
+[node name="Slot 8" type="Button" parent="CanvasLayer/Shop"]
+z_index = 1
+offset_left = 1476.0
+offset_top = 906.0
+offset_right = 1612.0
+offset_bottom = 1042.0
+icon = ExtResource("3_ogqp5")
+script = ExtResource("4_qi30k")
+price = 2600
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+z_index = 1
+offset_left = 122.0
+offset_top = 7.0
+offset_right = 255.0
+offset_bottom = 67.0
+theme_override_font_sizes/normal_font_size = 42
+text = "Wave:"
+
+[node name="Dollar" type="Sprite2D" parent="CanvasLayer"]
+z_index = 1
+position = Vector2(1273.25, 36.25)
+scale = Vector2(0.1375, 0.1375)
+texture = ExtResource("5_x2jtb")
+
+[node name="Untitled" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+texture = ExtResource("6_kcut4")
+
+[node name="Pause" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(41, 37)
+scale = Vector2(0.0983333, 0.0983333)
+texture = ExtResource("7_drara")
+
+[node name="Heart" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1621, 33)
+scale = Vector2(0.138672, 0.138672)
+texture = ExtResource("8_w1i4s")
