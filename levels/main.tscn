@@ -21,14 +21,10 @@ lightmap_size_hint = Vector2i(3840, 2160)
 material = SubResource("StandardMaterial3D_j2ysq")
 size = Vector2(16, 9)
 
-[sub_resource type="BoxMesh" id="BoxMesh_c2e15"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_omlow"]
+size = Vector3(20.9, 0.2, 10.6)
 
-[sub_resource type="Curve3D" id="Curve3D_sjcbk"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.290174, 3.92199e-05, 0.0124658, -1.32712, 0, 0.0340283, 1.32712, 0, -0.0340283, 3.97719, 3.92199e-05, 0.0443713, -1.33846, 0, -0.022686, 1.33846, 0, 0.022686, 6.81291, 3.92199e-05, -0.856337, -0.725945, 0, -0.0453715, 0.725945, 0, 0.0453715, 9.43312, 3.92199e-05, -0.0123433, 0, 0, 0, 0, 0, 0, 16.3182, 3.92199e-05, 0.0216857),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
-}
-point_count = 5
+[sub_resource type="BoxMesh" id="BoxMesh_c2e15"]
 
 [node name="Main" type="Node3D"]
 
@@ -57,6 +53,13 @@ environment = SubResource("Environment_epp8i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_2cy4w")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.1, 0)
+shape = SubResource("BoxShape3D_omlow")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0.000295759, -0.000553246, -0.000295608, 1, 0.000264221, 0.000553327, -0.000264053, 1, 6.65817, 0.111132, 3.24297)
 material_override = ExtResource("1_p36se")
@@ -76,10 +79,6 @@ surface_material_override/0 = ExtResource("1_p36se")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144743, 0.111132, 6.70583)
 material_override = ExtResource("1_p36se")
 mesh = SubResource("BoxMesh_c2e15")
-
-[node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2844, 0.0354832, -0.0226856)
-curve = SubResource("Curve3D_sjcbk")
 
 [node name="TowerPlacer" type="Node" parent="."]
 script = ExtResource("2_l7tu0")
