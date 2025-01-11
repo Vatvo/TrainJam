@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://deydaq8vxmx7h"]
+
+[ext_resource type="Script" path="res://objects/lever/lever.gd" id="1_kst43"]
+[ext_resource type="PackedScene" uid="uid://dowt1gp5ysvc1" path="res://resources/models/lever/lever.glb" id="1_tu5f8"]
+
+[node name="Lever" type="StaticBody3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_kst43")
+animation_player = NodePath("lever/AnimationPlayer")
+
+[node name="lever" parent="." instance=ExtResource("1_tu5f8")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+
+[node name="Skeleton3D" parent="lever/Armature" index="0"]
+bones/0/rotation = Quaternion(0, 0, -0.33035, 0.943858)
+
+[editable path="lever"]
