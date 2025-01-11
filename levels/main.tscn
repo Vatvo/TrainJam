@@ -1,15 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=9 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
-[ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="2_8gsr6"]
-[ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="2_uu4mb"]
-[ext_resource type="Texture2D" uid="uid://4hjn47x7l0jo" path="res://Images/dollar.webp" id="3_4u4bw"]
-[ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="3_e0wtn"]
-[ext_resource type="Script" path="res://objects/shop/shop.gd" id="3_xv0te"]
-[ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="4_v3brr"]
-[ext_resource type="Script" path="res://objects/card/card.gd" id="5_d7vx2"]
+[ext_resource type="PackedScene" uid="uid://co8qt7o6pchfw" path="res://objects/train/train.tscn" id="3_qkoly"]
+[ext_resource type="PackedScene" uid="uid://2xki1xc60gwq" path="res://objects/train_car/train_car.tscn" id="5_qguge"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
+background_color = Color(0.699653, 0.699653, 0.699653, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2ysq"]
 albedo_color = Color(0, 0.627451, 0, 1)
@@ -21,15 +17,24 @@ size = Vector2(16, 9)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c2e15"]
 
+[sub_resource type="Curve3D" id="Curve3D_sjcbk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.290174, 3.92199e-05, 0.0124658, -1.32712, 0, 0.0340283, 1.32712, 0, -0.0340283, 3.97719, 3.92199e-05, 0.0443713, -1.33846, 0, -0.022686, 1.33846, 0, 0.022686, 6.81291, 3.92199e-05, -0.856337, -0.725945, 0, -0.0453715, 0.725945, 0, 0.0453715, 9.43312, 3.92199e-05, -0.0123433, 0, 0, 0, 0, 0, 0, 16.3182, 3.92199e-05, 0.0216857),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.656651, -0.645553, 0.389961, -0.748088, -0.623175, 0.228075, 0.0957796, -0.441491, -0.892139, -0.0112739, 6.67442, 7.75954)
 light_indirect_energy = 0.0
+light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 5.0
 shadow_normal_bias = 1.0
 shadow_blur = 4.471
+directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -37,7 +42,8 @@ transform = Transform3D(1, 0, 0, 0, 0.485939, 0.873993, 0, -0.873993, 0.485939, 
 projection = 1
 fov = 30.1
 size = 9.0
-far = 8000.0
+near = 0.001
+far = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_epp8i")
@@ -65,76 +71,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144743, 0.111132, 6.70583)
 material_override = ExtResource("1_p36se")
 mesh = SubResource("BoxMesh_c2e15")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2844, 0.0354832, -0.0226856)
+curve = SubResource("Curve3D_sjcbk")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-z_index = 1
-offset_left = 157.0
-offset_top = -5.0
-offset_right = 317.0
-offset_bottom = 72.0
-theme_override_font_sizes/normal_font_size = 56
-text = "Wave
-"
-fit_content = true
+[node name="Train" parent="." node_paths=PackedStringArray("_train_cars") instance=ExtResource("3_qkoly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2661, 9.53674e-07, -0.271246)
+cars_amount = 0
+_train_cars = [NodePath("TrainHead"), NodePath("TrainCar1"), NodePath("Caboose")]
 
-[node name="Heart" type="Sprite2D" parent="CanvasLayer"]
-z_index = 1
-position = Vector2(1611, 31)
-scale = Vector2(0.150415, 0.150415)
-texture = ExtResource("2_8gsr6")
+[node name="TrainHead" parent="Train" instance=ExtResource("5_qguge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="Dollar" type="Sprite2D" parent="CanvasLayer"]
-z_index = 1
-position = Vector2(1279, 35)
-scale = Vector2(0.126976, 0.126976)
-texture = ExtResource("3_4u4bw")
+[node name="TrainCar2" parent="Train" instance=ExtResource("5_qguge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="Pause" type="Sprite2D" parent="CanvasLayer"]
-z_index = 1
-position = Vector2(47, 34)
-scale = Vector2(0.0969738, 0.0969738)
-texture = ExtResource("4_v3brr")
-
-[node name="Background" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(960, 540)
-texture = ExtResource("3_e0wtn")
-
-[node name="Shop" type="Node" parent="CanvasLayer"]
-script = ExtResource("3_xv0te")
-
-[node name="Slot 1" type="Button" parent="CanvasLayer/Shop"]
-z_index = 1
-offset_left = 111.0
-offset_top = 913.0
-offset_right = 247.0
-offset_bottom = 1049.0
-icon = ExtResource("2_uu4mb")
-icon_alignment = 1
-vertical_icon_alignment = 0
-script = ExtResource("5_d7vx2")
-price = 500
-
-[node name="Slot 2" type="Button" parent="CanvasLayer/Shop"]
-z_index = 1
-offset_left = 318.0
-offset_top = 910.0
-offset_right = 454.0
-offset_bottom = 1046.0
-icon = ExtResource("2_uu4mb")
-icon_alignment = 1
-vertical_icon_alignment = 0
-script = ExtResource("5_d7vx2")
-price = 800
-
-[node name="Slot 3" type="Button" parent="CanvasLayer/Shop"]
-z_index = 1
-offset_left = 520.0
-offset_top = 910.0
-offset_right = 656.0
-offset_bottom = 1046.0
-icon = ExtResource("2_uu4mb")
-icon_alignment = 1
-vertical_icon_alignment = 0
-script = ExtResource("5_d7vx2")
-price = 1100
+[node name="Caboose" parent="Train" instance=ExtResource("5_qguge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
