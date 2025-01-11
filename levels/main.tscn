@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=13 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
+[ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="2_8gsr6"]
 [ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="2_uu4mb"]
+[ext_resource type="Texture2D" uid="uid://4hjn47x7l0jo" path="res://Images/dollar.webp" id="3_4u4bw"]
 [ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="3_e0wtn"]
 [ext_resource type="Script" path="res://objects/shop/shop.gd" id="3_xv0te"]
+[ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="4_v3brr"]
 [ext_resource type="Script" path="res://objects/card/card.gd" id="5_d7vx2"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
@@ -64,6 +67,35 @@ mesh = SubResource("BoxMesh_c2e15")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+z_index = 1
+offset_left = 157.0
+offset_top = -5.0
+offset_right = 317.0
+offset_bottom = 72.0
+theme_override_font_sizes/normal_font_size = 56
+text = "Wave
+"
+fit_content = true
+
+[node name="Heart" type="Sprite2D" parent="CanvasLayer"]
+z_index = 1
+position = Vector2(1611, 31)
+scale = Vector2(0.150415, 0.150415)
+texture = ExtResource("2_8gsr6")
+
+[node name="Dollar" type="Sprite2D" parent="CanvasLayer"]
+z_index = 1
+position = Vector2(1279, 35)
+scale = Vector2(0.126976, 0.126976)
+texture = ExtResource("3_4u4bw")
+
+[node name="Pause" type="Sprite2D" parent="CanvasLayer"]
+z_index = 1
+position = Vector2(47, 34)
+scale = Vector2(0.0969738, 0.0969738)
+texture = ExtResource("4_v3brr")
+
 [node name="Background" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(960, 540)
 texture = ExtResource("3_e0wtn")
@@ -74,9 +106,9 @@ script = ExtResource("3_xv0te")
 [node name="Slot 1" type="Button" parent="CanvasLayer/Shop"]
 z_index = 1
 offset_left = 111.0
-offset_top = 910.0
+offset_top = 913.0
 offset_right = 247.0
-offset_bottom = 1046.0
+offset_bottom = 1049.0
 icon = ExtResource("2_uu4mb")
 icon_alignment = 1
 vertical_icon_alignment = 0
