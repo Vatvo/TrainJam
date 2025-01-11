@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=9 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
+[ext_resource type="PackedScene" uid="uid://deydaq8vxmx7h" path="res://objects/lever/lever.tscn" id="2_0gedd"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -12,6 +13,9 @@ albedo_color = Color(0, 0.627451, 0, 1)
 lightmap_size_hint = Vector2i(3840, 2160)
 material = SubResource("StandardMaterial3D_j2ysq")
 size = Vector2(16, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkr8i"]
+size = Vector3(19.7, 0.1, 12.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c2e15"]
 
@@ -49,6 +53,12 @@ environment = SubResource("Environment_epp8i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_2cy4w")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.850001, -0.05, -0.4)
+shape = SubResource("BoxShape3D_vkr8i")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0.000295759, -0.000553246, -0.000295608, 1, 0.000264221, 0.000553327, -0.000264053, 1, 6.65817, 0.111132, 3.24297)
 material_override = ExtResource("1_p36se")
@@ -72,3 +82,6 @@ mesh = SubResource("BoxMesh_c2e15")
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2844, 0.0354832, -0.0226856)
 curve = SubResource("Curve3D_sjcbk")
+
+[node name="Lever" parent="." instance=ExtResource("2_0gedd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4, 0, 1.1)
