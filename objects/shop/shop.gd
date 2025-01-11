@@ -4,13 +4,13 @@ class_name Shop
 @export var cards: Array[Card] = []
 @export var gold: int
 
-func _ready():
-	pass # Replace with function body.
+@onready var tower_placer: TowerPlacer = $"../../TowerPlacer"
 
-func purchase_item(item: String, price: int):
+func purchase_item(item: String, price: int, tower: PackedScene):
 	if gold > price:
 		print("purchased " + item)
 		gold -= price
+		tower_placer.begin_placement(tower)
 
 func modulate_card(card: Card):
 	if gold > card.price:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://12koe6sah6r1"]
 
-[ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="1_p36se"]
+[ext_resource type="Script" path="res://objects/main/game_manager.gd" id="1_mecck"]
 [ext_resource type="Script" path="res://objects/tower_placer/tower_placer.gd" id="2_l7tu0"]
 [ext_resource type="Script" path="res://objects/shop/shop.gd" id="2_u5dic"]
 [ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="3_ogqp5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="6_kcut4"]
 [ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="7_drara"]
 [ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="8_w1i4s"]
+[ext_resource type="PackedScene" uid="uid://d0ewamj2o5p68" path="res://objects/tower/tower.tscn" id="10_s0ouj"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -24,9 +25,10 @@ size = Vector2(16, 9)
 [sub_resource type="BoxShape3D" id="BoxShape3D_omlow"]
 size = Vector3(20.9, 0.2, 10.6)
 
-[sub_resource type="BoxMesh" id="BoxMesh_c2e15"]
-
 [node name="Main" type="Node3D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_mecck")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.656651, -0.645554, 0.389961, -0.493752, 0.0228814, 0.869301, -0.570104, -0.763372, -0.303719, -0.0112739, 6.67442, 7.75954)
@@ -60,26 +62,6 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.1, 0)
 shape = SubResource("BoxShape3D_omlow")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0.000295759, -0.000553246, -0.000295608, 1, 0.000264221, 0.000553327, -0.000264053, 1, 6.65817, 0.111132, 3.24297)
-material_override = ExtResource("1_p36se")
-mesh = SubResource("BoxMesh_c2e15")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596133, 0.111132, -5.48648)
-material_override = ExtResource("1_p36se")
-mesh = SubResource("BoxMesh_c2e15")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2744, 0.111132, -0.88138)
-mesh = SubResource("BoxMesh_c2e15")
-surface_material_override/0 = ExtResource("1_p36se")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144743, 0.111132, 6.70583)
-material_override = ExtResource("1_p36se")
-mesh = SubResource("BoxMesh_c2e15")
-
 [node name="TowerPlacer" type="Node" parent="."]
 script = ExtResource("2_l7tu0")
 
@@ -96,6 +78,7 @@ offset_right = 182.0
 offset_bottom = 1042.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 500
 
 [node name="Slot 2" type="Button" parent="CanvasLayer/Shop"]
@@ -106,6 +89,7 @@ offset_right = 364.0
 offset_bottom = 1042.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 800
 
 [node name="Slot 3" type="Button" parent="CanvasLayer/Shop"]
@@ -116,6 +100,7 @@ offset_right = 563.0
 offset_bottom = 1042.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 1100
 
 [node name="Slot 4" type="Button" parent="CanvasLayer/Shop"]
@@ -126,6 +111,7 @@ offset_right = 754.0
 offset_bottom = 1042.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 1400
 
 [node name="Slot 5" type="Button" parent="CanvasLayer/Shop"]
@@ -136,6 +122,7 @@ offset_right = 974.0
 offset_bottom = 1045.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 1700
 
 [node name="Slot 6" type="Button" parent="CanvasLayer/Shop"]
@@ -146,6 +133,7 @@ offset_right = 1191.0
 offset_bottom = 1042.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 2000
 
 [node name="Slot 7" type="Button" parent="CanvasLayer/Shop"]
@@ -156,6 +144,7 @@ offset_right = 1402.0
 offset_bottom = 1045.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 2300
 
 [node name="Slot 8" type="Button" parent="CanvasLayer/Shop"]
@@ -166,6 +155,7 @@ offset_right = 1612.0
 offset_bottom = 1042.0
 icon = ExtResource("3_ogqp5")
 script = ExtResource("4_qi30k")
+tower = ExtResource("10_s0ouj")
 price = 2600
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
