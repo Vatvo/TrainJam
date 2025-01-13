@@ -51,7 +51,7 @@ func check_valid_placement():
 		var closest_point = path.curve.get_closest_point(current_tower.position)
 		if current_tower.position.distance_to(closest_point) < 0.5:
 			return {"valid": true, "position": closest_point}
-	return {"valid": false, "position": Vector3(0,0,0)}
+	return {"valid": false, "position": null}
 	
 
 func _input(event):
@@ -62,7 +62,6 @@ func _input(event):
 		
 func begin_placement(tower: PackedScene):
 	current_tower = tower.instantiate()
-	print(current_tower)
 	add_child(current_tower)
 	isPlacing = true
 	
