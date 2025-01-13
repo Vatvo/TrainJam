@@ -20,6 +20,14 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[file_customization]
+
+folder_colors={
+"res://levels/": "orange",
+"res://objects/": "purple",
+"res://resources/": "green"
+}
+
 [layer_names]
 
 3d_physics/layer_1="mouse_detectable"
