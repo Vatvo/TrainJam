@@ -2,8 +2,10 @@ extends Node
 class_name TowerPlacer
 
 @onready var camera: Camera3D = $"../Camera3D"
+@onready var validMaterial: StandardMaterial3D = preload("res://materials/validPlacement.tres")
+@onready var invalidMaterial: StandardMaterial3D = preload("res://materials/invalidPlacement.tres")
 
-@export var current_tower: Tower
+@export var current_tower: Node
 @export var valid_paths: Array[Path3D]
 var isPlacing: bool = false
 var validPlacement: Dictionary = {"valid": false, "position": Vector3(0,0,0)}
@@ -35,11 +37,13 @@ func _process(delta):
 		
 		validPlacement = check_valid_placement()
 		if validPlacement["valid"]:
-			current_tower.mesh.material.albedo_color = Color(0,1,0,0.5)
+			current_tower.mesh.material = validMaterial
 			current_tower.position = validPlacement["position"]
 			
 		else:
-			current_tower.mesh.material.albedo_color = Color(1,0,0,0.5)
+			current_tower.mesh.material = invalidMaterial
+		
+		
 			
 func check_valid_placement():
 	var res: bool = false
@@ -54,14 +58,17 @@ func _input(event):
 	if event is InputEventMouseButton && validPlacement["valid"]:
 		isPlacing = false
 		current_tower = null
+		place_tower()
 		
 func begin_placement(tower: PackedScene):
 	current_tower = tower.instantiate()
+	print(current_tower)
 	add_child(current_tower)
 	isPlacing = true
 	
 func place_tower():
 	isPlacing = false
+	current_tower = null
 
 func abort_placement():
 	current_tower.queue_free()

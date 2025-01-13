@@ -5,6 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvgjl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rjtjw"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_tvgjl")
 
 [node name="MeshInstance3D2" type="MeshInstance3D"]
