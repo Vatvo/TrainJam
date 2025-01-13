@@ -6,9 +6,6 @@ extends Node3D
 @export_category("Train Car Settings")
 @export_range(1, 999, 1, "or_greater") var cars_amount : int :
 	set(set_value):
-		if not Engine.is_editor_hint():
-			return
-		
 		if not is_node_ready():
 			return
 		
@@ -71,15 +68,13 @@ extends Node3D
 # --- method overrides ---
 
 # --- public methods ---
-func start_on_follow_path(path : Path3D) -> void:
-	global_position = path.global_position
+func start_on_follow_path(path : TrackPath) -> void:
+	#global_position = path.global_position
 	
 	for train_car : TrainCar in _train_cars:
 		var train_car_path_follow : TrainCarPathFollow = train_car_path_follow_packed_scene.instantiate() as TrainCarPathFollow
 		train_car_path_follow.start(train_car, path, speed)
-		print(train_car.get_length() / speed)
 		await get_tree().create_timer(train_car.get_length() / speed).timeout
-		print("dunzo!")
 
 func delete_all_train_cars() -> void:
 	for child : Node in get_children(true):

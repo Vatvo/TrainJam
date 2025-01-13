@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvcw3y7os37b1"]
+
+[ext_resource type="Script" path="res://objects/mouse_scanner_manager/mouse_scanner_manager.gd" id="1_htbmp"]
+
+[node name="MouseScannerManager" type="Node3D" node_paths=PackedStringArray("ray_cast")]
+script = ExtResource("1_htbmp")
+ray_cast = NodePath("RayCast3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+debug_shape_thickness = 5

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjj73ihoy0dfu"]
+
+[ext_resource type="PackedScene" uid="uid://c81mie7ypw2nu" path="res://objects/track_path/track_path.tscn" id="1_meryy"]
+[ext_resource type="Script" path="res://objects/track_path/branching_track_path/branching_track_path.gd" id="2_vufs4"]
+
+[node name="BranchingTrackPath" instance=ExtResource("1_meryy")]
+script = ExtResource("2_vufs4")
+path_switch_animation_length = 0.3

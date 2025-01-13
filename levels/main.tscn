@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=27 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Script" path="res://objects/main/game_manager.gd" id="1_mecck"]
+[ext_resource type="Script" path="res://levels/main.gd" id="1_s4u06"]
 [ext_resource type="Script" path="res://objects/tower_placer/tower_placer.gd" id="2_l7tu0"]
 [ext_resource type="Script" path="res://objects/shop/shop.gd" id="2_u5dic"]
 [ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="3_ogqp5"]
@@ -10,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="7_drara"]
 [ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="8_w1i4s"]
 [ext_resource type="PackedScene" uid="uid://d0ewamj2o5p68" path="res://objects/tower/tower.tscn" id="10_s0ouj"]
+[ext_resource type="PackedScene" uid="uid://c81mie7ypw2nu" path="res://objects/track_path/track_path.tscn" id="12_cd1oc"]
+[ext_resource type="PackedScene" uid="uid://deydaq8vxmx7h" path="res://objects/lever/lever.tscn" id="12_sbfb4"]
+[ext_resource type="PackedScene" uid="uid://cjj73ihoy0dfu" path="res://objects/track_path/branching_track_path/branching_track_path.tscn" id="13_p5ck2"]
+[ext_resource type="ArrayMesh" uid="uid://b6v6sf4ao7o8e" path="res://resources/models/rails/plank_01_Cube_001.res" id="14_ucayg"]
+[ext_resource type="PackedScene" uid="uid://co8qt7o6pchfw" path="res://objects/train/train.tscn" id="14_uctha"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -25,7 +31,48 @@ size = Vector2(16, 9)
 [sub_resource type="BoxShape3D" id="BoxShape3D_omlow"]
 size = Vector3(20.9, 0.2, 10.6)
 
+[sub_resource type="Curve3D" id="Curve3D_omls0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -9.30184, 0, 0.0532422, 0, 0, 0, 0, 0, 0, -5.2, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="MultiMesh" id="MultiMesh_4taj1"]
+transform_format = 1
+instance_count = 4
+mesh = ExtResource("14_ucayg")
+buffer = PackedFloat32Array(0.012979, 0, -0.999916, -8.80188, 0, 1, 0, 0, 0.999916, 0, 0.012979, 0.0467527, 0.012979, 0, -0.999916, -7.80196, 0, 1, 0, 0, 0.999916, 0, 0.012979, 0.0337737, 0.012979, 0, -0.999916, -6.80205, 0, 1, 0, 0, 0.999916, 0, 0.012979, 0.0207947, 0.0129791, 0, -0.999916, -5.80213, 0, 1, 0, 0, 0.999916, 0, 0.0129791, 0.00781573)
+
+[sub_resource type="Curve3D" id="Curve3D_foxa8"]
+_data = {
+"points": PackedVector3Array(-2.3, 0, 1.2, 2.3, 0, -1.2, -3, 0, -1.5, -0.85, 0, 0.08, 0.85, 0, -0.08, 0.7, 0, -2.7, -1.42, 0, -0.13, 1.42, 0, 0.13, 3.2, 0, -2.6, -1.34, 0, -0.34, 1.34, 0, 0.34, 5.57413, 0, -1.06405),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="MultiMesh" id="MultiMesh_ljcgk"]
+transform_format = 1
+instance_count = 9
+mesh = ExtResource("14_ucayg")
+buffer = PackedFloat32Array(0.446102, 0, -0.894982, -2.55467, 0, 1, 0, 0, 0.894982, 0, 0.446102, -1.72732, 0.392414, 0, -0.919789, -1.64835, 0, 1, 0, 0, 0.919789, 0, 0.392414, -2.14955, 0.274409, 0, -0.961613, -0.709384, 0, 1, 0, 0, 0.961613, 0, 0.274409, -2.49167, 0.0847503, 0, -0.996402, 0.273681, 0, 1, 0, 0, 0.996402, 0, 0.0847503, -2.66512, 0.0238344, 0, -0.999716, 1.27095, 0, 1, 0, 0, 0.999716, 0, 0.0238344, -2.73677, -0.0905852, 0, -0.995889, 2.26911, 0, 1, 0, 0, 0.995889, 0, -0.0905852, -2.68722, -0.116447, 0, -0.993197, 3.2646, 0, 1, 0, 0, 0.993197, 0, -0.116447, -2.59249, -0.691918, 0, -0.721976, 4.16407, 0, 1, 0, 0, 0.721976, 0, -0.691918, -2.20239, -0.663135, 0, -0.7485, 4.81787, 0, 1, 0, 0, 0.7485, 0, -0.663135, -1.44786)
+
+[sub_resource type="Curve3D" id="Curve3D_kyesq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.07692, 0, -0.0904099, 0, 0, 0, 0, 0, 0, 11.4, 0, -0.1),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="MultiMesh" id="MultiMesh_holep"]
+transform_format = 1
+instance_count = 14
+mesh = ExtResource("14_ucayg")
+buffer = PackedFloat32Array(0.000662446, 0, -1, -2.57692, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0907411, 0.000662446, 0, -1, -1.57692, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0914036, 0.000662446, 0, -1, -0.576916, 0, 1, 0, 0, 1, 0, 0.000662446, -0.092066, 0.000662446, 0, -1, 0.423084, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0927284, 0.000662446, 0, -1, 1.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0933909, 0.000662446, 0, -1, 2.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0940533, 0.000662446, 0, -1, 3.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0947158, 0.000662446, 0, -1, 4.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0953782, 0.000662386, 0, -1, 5.42308, 0, 1, 0, 0, 1, 0, 0.000662386, -0.0960406, 0.000662446, 0, -1, 6.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0967031, 0.000662446, 0, -1, 7.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0973655, 0.000662446, 0, -1, 8.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.098028, 0.000662744, 0, -1, 9.42308, 0, 1, 0, 0, 1, 0, 0.000662744, -0.0986904, 0.000662386, 0, -1, 10.4231, 0, 1, 0, 0, 1, 0, 0.000662386, -0.0993528)
+
 [node name="Main" type="Node3D"]
+script = ExtResource("1_s4u06")
+train_packed_scene = ExtResource("14_uctha")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_mecck")
@@ -186,3 +233,34 @@ texture = ExtResource("7_drara")
 position = Vector2(1621, 33)
 scale = Vector2(0.138672, 0.138672)
 texture = ExtResource("8_w1i4s")
+
+[node name="Lever" parent="." node_paths=PackedStringArray("linked_branching_path") instance=ExtResource("12_sbfb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7, 0, 1.5)
+linked_branching_path = NodePath("../Paths/MainPath1")
+
+[node name="Paths" type="Node3D" parent="."]
+
+[node name="MainPath1" parent="Paths" node_paths=PackedStringArray("alternate_path", "connected_path") instance=ExtResource("13_p5ck2")]
+curve = SubResource("Curve3D_omls0")
+alternate_path = NodePath("../UpperPath")
+connected_path = NodePath("../MainPath2")
+
+[node name="MultiMeshInstance3D" parent="Paths/MainPath1" index="2"]
+multimesh = SubResource("MultiMesh_4taj1")
+
+[node name="UpperPath" parent="Paths" node_paths=PackedStringArray("connected_path") instance=ExtResource("12_cd1oc")]
+curve = SubResource("Curve3D_foxa8")
+connected_path = NodePath("../MainPath2")
+
+[node name="MultiMeshInstance3D" parent="Paths/UpperPath" index="2"]
+multimesh = SubResource("MultiMesh_ljcgk")
+
+[node name="MainPath2" parent="Paths" instance=ExtResource("12_cd1oc")]
+curve = SubResource("Curve3D_kyesq")
+
+[node name="MultiMeshInstance3D" parent="Paths/MainPath2" index="2"]
+multimesh = SubResource("MultiMesh_holep")
+
+[editable path="Paths/MainPath1"]
+[editable path="Paths/UpperPath"]
+[editable path="Paths/MainPath2"]
