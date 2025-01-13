@@ -2,9 +2,13 @@ extends Node
 class_name TowerPlacer
 
 @onready var camera: Camera3D = $"../Camera3D"
+@onready var validMaterial: StandardMaterial3D = preload("res://materials/validPlacement.tres")
+@onready var invalidMaterial: StandardMaterial3D = preload("res://materials/invalidPlacement.tres")
 
-@export var current_tower: Tower
+@export var current_tower: Node
+@export var valid_paths: Array[Path3D]
 var isPlacing: bool = false
+var validPlacement: Dictionary = {"valid": false, "position": Vector3(0,0,0)}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +17,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
 	if isPlacing:
 		var mouse_pos: Vector2i = get_viewport().get_mouse_position()
 		var ray_length: int = 8000
@@ -28,11 +34,31 @@ func _process(delta):
 		
 		if !raycast_result.is_empty():
 			current_tower.position = raycast_result["position"]
+		
+		validPlacement = check_valid_placement()
+		if validPlacement["valid"]:
+			current_tower.mesh.material = validMaterial
+			current_tower.position = validPlacement["position"]
+			
+		else:
+			current_tower.mesh.material = invalidMaterial
+		
+		
+			
+func check_valid_placement():
+	var res: bool = false
+	for path in valid_paths:
+		var closest_point = path.curve.get_closest_point(current_tower.position)
+		if current_tower.position.distance_to(closest_point) < 0.5:
+			return {"valid": true, "position": closest_point}
+	return {"valid": false, "position": null}
+	
 
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && validPlacement["valid"]:
 		isPlacing = false
 		current_tower = null
+		place_tower()
 		
 func begin_placement(tower: PackedScene):
 	current_tower = tower.instantiate()
@@ -41,6 +67,7 @@ func begin_placement(tower: PackedScene):
 	
 func place_tower():
 	isPlacing = false
+	current_tower = null
 
 func abort_placement():
 	current_tower.queue_free()
