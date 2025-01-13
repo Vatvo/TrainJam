@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=18 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Script" path="res://objects/main/game_manager.gd" id="1_mecck"]
 [ext_resource type="Script" path="res://objects/tower_placer/tower_placer.gd" id="2_l7tu0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="7_drara"]
 [ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="8_w1i4s"]
 [ext_resource type="PackedScene" uid="uid://d0ewamj2o5p68" path="res://objects/tower/tower.tscn" id="10_s0ouj"]
+[ext_resource type="Material" uid="uid://cltn8ydkppp4q" path="res://tempmat.tres" id="11_7qv6w"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -24,6 +25,15 @@ size = Vector2(16, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omlow"]
 size = Vector3(20.9, 0.2, 10.6)
+
+[sub_resource type="Curve3D" id="Curve3D_e6flp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_15sd3"]
 
 [node name="Main" type="Node3D"]
 
@@ -62,8 +72,9 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.1, 0)
 shape = SubResource("BoxShape3D_omlow")
 
-[node name="TowerPlacer" type="Node" parent="."]
+[node name="TowerPlacer" type="Node" parent="." node_paths=PackedStringArray("valid_paths")]
 script = ExtResource("2_l7tu0")
+valid_paths = [NodePath("../Path3D")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -186,3 +197,17 @@ texture = ExtResource("7_drara")
 position = Vector2(1621, 33)
 scale = Vector2(0.138672, 0.138672)
 texture = ExtResource("8_w1i4s")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.74937, 0.235132, 0)
+curve = SubResource("Curve3D_e6flp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.24724, 0, 0)
+material_override = ExtResource("11_7qv6w")
+mesh = SubResource("BoxMesh_15sd3")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.31977, 0, 0)
+material_override = ExtResource("11_7qv6w")
+mesh = SubResource("BoxMesh_15sd3")
