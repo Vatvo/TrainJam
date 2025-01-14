@@ -7,6 +7,7 @@ class_name TowerPlacer
 
 @export var current_tower: Node
 @export var valid_paths: Array[Path3D]
+
 var isPlacing: bool = false
 var validPlacement: Dictionary = {"valid": false, "position": Vector3(0,0,0)}
 
@@ -38,11 +39,16 @@ func _process(delta):
 		
 		validPlacement = check_valid_placement()
 		if validPlacement["valid"]:
-			current_tower.mesh.material = validMaterial
+			#var meshes = current_tower.mesh_object.meshes
+			#for mesh in meshes:
+			#	mesh.surface_material_override[0] = validMaterial
 			current_tower.position = validPlacement["position"]
 			
 		else:
-			current_tower.mesh.material = invalidMaterial
+			pass
+			#var meshes = current_tower.mesh_object.meshes
+			#for mesh in meshes:
+			#	mesh.surface_material_override[0] = invalidMaterial
 		
 		
 			
