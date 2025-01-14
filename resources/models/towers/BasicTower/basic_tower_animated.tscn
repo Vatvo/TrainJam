@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgtuyv6ide46h" path="res://resources/models/towers/BasicTower/basic_tower.glb" id="1_81ayx"]
 
 [node name="BasicTowerAnimated" instance=ExtResource("1_81ayx")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(-0.133512, -0.000455957, -5.59969)
