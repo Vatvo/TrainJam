@@ -31,8 +31,8 @@ func start(train_car : TrainCar, path : TrackPath, speed : float) -> void:
 	while next_path != null:
 		await transfer_paths(next_path, speed)
 		next_path = await follow_path(next_path, speed)
-	
-	train_car.queue_free()
+	if is_instance_valid(train_car):
+		train_car.queue_free()
 
 ## returns the connected path
 func follow_path(path : TrackPath, speed : float) -> TrackPath:

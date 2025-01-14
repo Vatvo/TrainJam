@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://2xki1xc60gwq" path="res://objects/train_car/train_car.tscn" id="2_wdisp"]
 [ext_resource type="PackedScene" uid="uid://cqotelify1qe3" path="res://objects/train_car/train_car_path_follow/train_car_path_follow.tscn" id="3_rrxd6"]
 
-[node name="Train" type="Node3D" node_paths=PackedStringArray("_train_cars")]
+[node name="Train" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 999.9, 999.9, 999.9)
 script = ExtResource("1_bdkow")
 train_head_packed_scene = ExtResource("2_wdisp")
 middle_segments_packed_scene = ExtResource("2_wdisp")
 caboose_packed_scene = ExtResource("2_wdisp")
 speed = 1.0
 train_car_path_follow_packed_scene = ExtResource("3_rrxd6")
-_train_cars = [null, null, null]

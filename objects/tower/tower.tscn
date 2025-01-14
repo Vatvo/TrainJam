@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0ewamj2o5p68"]
+[gd_scene load_steps=5 format=3 uid="uid://d0ewamj2o5p68"]
 
 [ext_resource type="Script" path="res://objects/tower/tower.gd" id="1_ut7dg"]
 
@@ -8,6 +8,17 @@
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_tvgjl")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_k0ulm"]
+
 [node name="MeshInstance3D2" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_rjtjw")
 script = ExtResource("1_ut7dg")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_k0ulm")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

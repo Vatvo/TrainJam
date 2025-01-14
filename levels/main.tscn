@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=28 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Script" path="res://objects/main/game_manager.gd" id="1_mecck"]
 [ext_resource type="Script" path="res://levels/main.gd" id="1_s4u06"]
 [ext_resource type="Script" path="res://objects/tower_placer/tower_placer.gd" id="2_l7tu0"]
 [ext_resource type="Script" path="res://objects/shop/shop.gd" id="2_u5dic"]
+[ext_resource type="PackedScene" uid="uid://b2k5ei7ygajkm" path="res://objects/train/premade_trains/good_train.tscn" id="2_wpxoc"]
 [ext_resource type="Texture2D" uid="uid://c6yrufk1p3hsj" path="res://icon.svg" id="3_ogqp5"]
+[ext_resource type="PackedScene" uid="uid://bjbml7pwyl7a1" path="res://objects/train/premade_trains/bad_train.tscn" id="3_s4ny5"]
 [ext_resource type="Script" path="res://objects/card/card.gd" id="4_qi30k"]
 [ext_resource type="Texture2D" uid="uid://4hjn47x7l0jo" path="res://Images/dollar.webp" id="5_x2jtb"]
 [ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="6_kcut4"]
@@ -15,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://deydaq8vxmx7h" path="res://objects/lever/lever.tscn" id="12_sbfb4"]
 [ext_resource type="PackedScene" uid="uid://cjj73ihoy0dfu" path="res://objects/track_path/branching_track_path/branching_track_path.tscn" id="13_p5ck2"]
 [ext_resource type="ArrayMesh" uid="uid://b6v6sf4ao7o8e" path="res://resources/models/rails/plank_01_Cube_001.res" id="14_ucayg"]
-[ext_resource type="PackedScene" uid="uid://co8qt7o6pchfw" path="res://objects/train/train.tscn" id="14_uctha"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -26,53 +27,54 @@ albedo_color = Color(0, 0.627451, 0, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_2cy4w"]
 lightmap_size_hint = Vector2i(3840, 2160)
 material = SubResource("StandardMaterial3D_j2ysq")
-size = Vector2(16, 9)
+size = Vector2(32, 18)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omlow"]
 size = Vector3(20.9, 0.2, 10.6)
 
 [sub_resource type="Curve3D" id="Curve3D_omls0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -9.30184, 0, 0.0532422, 0, 0, 0, 0, 0, 0, -5.2, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -17.0481, 0.0206647, -0.0164528, 0, 0, 0, 0, 0, 0, -12.6033, 4.76837e-07, -0.00116253),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[sub_resource type="MultiMesh" id="MultiMesh_4taj1"]
+[sub_resource type="MultiMesh" id="MultiMesh_mynpn"]
 transform_format = 1
 instance_count = 4
 mesh = ExtResource("14_ucayg")
-buffer = PackedFloat32Array(0.012979, 0, -0.999916, -8.80188, 0, 1, 0, 0, 0.999916, 0, 0.012979, 0.0467527, 0.012979, 0, -0.999916, -7.80196, 0, 1, 0, 0, 0.999916, 0, 0.012979, 0.0337737, 0.012979, 0, -0.999916, -6.80205, 0, 1, 0, 0, 0.999916, 0, 0.012979, 0.0207947, 0.0129791, 0, -0.999916, -5.80213, 0, 1, 0, 0, 0.999916, 0, 0.0129791, 0.00781573)
+buffer = PackedFloat32Array(-0.0034399, 0.00464889, -0.999983, -16.5481, 0, 0.999989, 0.00464892, 0.0183402, 0.999994, 1.59918e-05, -0.00343987, -0.0147328, -0.0034399, 0.00464889, -0.999983, -15.5482, 0, 0.999989, 0.00464892, 0.0136913, 0.999994, 1.59918e-05, -0.00343987, -0.0112929, -0.0034399, 0.00464889, -0.999983, -14.5482, -4.65661e-10, 0.999989, 0.00464892, 0.00904239, 0.999994, 1.59923e-05, -0.00343987, -0.00785299, -0.0034399, 0.00464889, -0.999983, -13.5482, -2.32831e-10, 0.999989, 0.00464892, 0.00439347, 0.999994, 1.59921e-05, -0.00343987, -0.00441307)
 
 [sub_resource type="Curve3D" id="Curve3D_foxa8"]
 _data = {
-"points": PackedVector3Array(-2.3, 0, 1.2, 2.3, 0, -1.2, -3, 0, -1.5, -0.85, 0, 0.08, 0.85, 0, -0.08, 0.7, 0, -2.7, -1.42, 0, -0.13, 1.42, 0, 0.13, 3.2, 0, -2.6, -1.34, 0, -0.34, 1.34, 0, 0.34, 5.57413, 0, -1.06405),
+"points": PackedVector3Array(-2.80656, 0.045495, 0.129072, 2.80656, -0.045495, -0.129072, -7.08908, 0.071353, -5.12055, -0.969407, 0.00425339, -0.0238516, 0.969407, -0.00425339, 0.0238516, 3.73197, 0.0167599, -5.10919, -1.89274, 1.90735e-06, -1.7913, 1.89274, -1.90735e-06, 1.7913, 7.35992, 0.0164795, -2.8952, -1.12066, 0.0162954, -0.700213, 1.12066, -0.0162954, 0.700213, 11.2903, -0.036499, -0.104829),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
-[sub_resource type="MultiMesh" id="MultiMesh_ljcgk"]
+[sub_resource type="MultiMesh" id="MultiMesh_0w3dk"]
 transform_format = 1
-instance_count = 9
+instance_count = 20
 mesh = ExtResource("14_ucayg")
-buffer = PackedFloat32Array(0.446102, 0, -0.894982, -2.55467, 0, 1, 0, 0, 0.894982, 0, 0.446102, -1.72732, 0.392414, 0, -0.919789, -1.64835, 0, 1, 0, 0, 0.919789, 0, 0.392414, -2.14955, 0.274409, 0, -0.961613, -0.709384, 0, 1, 0, 0, 0.961613, 0, 0.274409, -2.49167, 0.0847503, 0, -0.996402, 0.273681, 0, 1, 0, 0, 0.996402, 0, 0.0847503, -2.66512, 0.0238344, 0, -0.999716, 1.27095, 0, 1, 0, 0, 0.999716, 0, 0.0238344, -2.73677, -0.0905852, 0, -0.995889, 2.26911, 0, 1, 0, 0, 0.995889, 0, -0.0905852, -2.68722, -0.116447, 0, -0.993197, 3.2646, 0, 1, 0, 0, 0.993197, 0, -0.116447, -2.59249, -0.691918, 0, -0.721976, 4.16407, 0, 1, 0, 0, 0.721976, 0, -0.691918, -2.20239, -0.663135, 0, -0.7485, 4.81787, 0, 1, 0, 0, 0.7485, 0, -0.663135, -1.44786)
+buffer = PackedFloat32Array(0.0318458, 0.0126878, -0.999412, -6.5895, 0.000203784, 0.999919, 0.0127007, 0.0642273, 0.999493, -0.000608127, 0.0318406, -5.1396, 0.0165655, 0.00892946, -0.999823, -5.58984, 0.000369119, 0.99996, 0.00893681, 0.0536333, 0.999863, -0.000517096, 0.0165615, -5.1629, 0.00797379, 0.00683955, -0.999945, -4.58994, 0.000436895, 0.999977, 0.00684325, 0.0458246, 0.999968, -0.000491437, 0.00797062, -5.17484, 0.00221902, 0.00546215, -0.999983, -3.58997, 0.000472311, 0.999985, 0.00546321, 0.0397102, 0.999997, -0.000484426, 0.00221641, -5.17978, -0.00203836, 0.00446721, -0.999988, -2.58999, 0.000493431, 0.99999, 0.00446621, 0.0347687, 0.999998, -0.000484322, -0.00204054, -5.17978, -0.00541174, 0.00370712, -0.999978, -1.59, 0.000507196, 0.999993, 0.00370443, 0.0306997, 0.999985, -0.000487138, -0.00541359, -5.17599, -0.0082376, 0.00310656, -0.999961, -0.590034, 0.000516801, 0.999995, 0.00310241, 0.0273073, 0.999966, -0.000491224, -0.00823917, -5.16913, -0.0107331, 0.00262783, -0.999939, 0.409916, 0.000523932, 0.999996, 0.00262236, 0.0244547, 0.999942, -0.000495754, -0.0107345, -5.15962, -0.0130911, 0.00226121, -0.999912, 1.40984, 0.00052966, 0.999997, 0.00225447, 0.0220267, 0.999914, -0.0005001, -0.0130923, -5.1477, -0.0156034, 0.00205337, -0.999876, 2.40974, 0.000535007, 0.999998, 0.00204527, 0.0198955, 0.999878, -0.000503028, -0.0156045, -5.13339, -0.0196865, 0.00253346, -0.999803, 3.40958, 0.000543909, 0.999997, 0.00252324, 0.0177522, 0.999806, -0.000494128, -0.0196878, -5.11607, -0.262069, 0.00135382, -0.965048, 4.40124, 0.00117721, 0.999999, 0.00108316, 0.014975, 0.965048, -0.000852202, -0.262071, -5.01523, -0.532636, -4.36173e-05, -0.846344, 5.30655, 0.00116457, 0.999999, -0.000784443, 0.0151202, 0.846344, -0.00140345, -0.532635, -4.59953, -0.632749, 0.000149604, -0.774357, 6.11239, 0.0010662, 0.999999, -0.000678027, 0.0159093, 0.774356, -0.00125464, -0.632748, -4.00845, -0.673053, 0.000498469, -0.739594, 6.8674, 0.00103934, 0.999999, -0.000271852, 0.0163891, 0.739594, -0.000951659, -0.673053, -3.35291, -0.677085, 0.00161184, -0.735903, 7.59945, 0.00102774, 0.999999, 0.00124468, 0.0162744, 0.735904, 8.64377e-05, -0.677086, -2.67169, -0.636163, 0.00510889, -0.771538, 8.35237, 0.000832069, 0.999982, 0.00593551, 0.0128, 0.771554, 0.00313398, -0.636156, -2.01377, -0.576897, 0.00992499, -0.816757, 9.14579, 0.000158773, 0.999928, 0.0120387, 0.00392123, 0.816817, 0.0068154, -0.576856, -1.40555, -0.510363, 0.0146565, -0.859834, 9.98549, -0.00102914, 0.999844, 0.017654, -0.0111802, 0.859959, 0.00989481, -0.510268, -0.863227, -0.499734, 0.0136374, -0.866071, 10.853, -0.00126059, 0.999864, 0.0164715, -0.0290785, 0.866178, 0.00932312, -0.499649, -0.36622)
 
 [sub_resource type="Curve3D" id="Curve3D_kyesq"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.07692, 0, -0.0904099, 0, 0, 0, 0, 0, 0, 11.4, 0, -0.1),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -6.80556, 0, -0.0904099, 0, 0, 0, 0, 0, 0, 17.0488, 0, -0.1),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[sub_resource type="MultiMesh" id="MultiMesh_holep"]
+[sub_resource type="MultiMesh" id="MultiMesh_bu8tl"]
 transform_format = 1
-instance_count = 14
+instance_count = 23
 mesh = ExtResource("14_ucayg")
-buffer = PackedFloat32Array(0.000662446, 0, -1, -2.57692, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0907411, 0.000662446, 0, -1, -1.57692, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0914036, 0.000662446, 0, -1, -0.576916, 0, 1, 0, 0, 1, 0, 0.000662446, -0.092066, 0.000662446, 0, -1, 0.423084, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0927284, 0.000662446, 0, -1, 1.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0933909, 0.000662446, 0, -1, 2.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0940533, 0.000662446, 0, -1, 3.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0947158, 0.000662446, 0, -1, 4.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0953782, 0.000662386, 0, -1, 5.42308, 0, 1, 0, 0, 1, 0, 0.000662386, -0.0960406, 0.000662446, 0, -1, 6.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0967031, 0.000662446, 0, -1, 7.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.0973655, 0.000662446, 0, -1, 8.42308, 0, 1, 0, 0, 1, 0, 0.000662446, -0.098028, 0.000662744, 0, -1, 9.42308, 0, 1, 0, 0, 1, 0, 0.000662744, -0.0986904, 0.000662386, 0, -1, 10.4231, 0, 1, 0, 0, 1, 0, 0.000662386, -0.0993528)
+buffer = PackedFloat32Array(0.000401914, 0, -1, -6.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0906109, 0.000401914, 0, -1, -5.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0910129, 0.000401795, 0, -1, -4.30556, 0, 1, 0, 0, 1, 0, 0.000401795, -0.091415, 0.000401914, 0, -1, -3.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.091817, 0.000401974, 0, -1, -2.30556, 0, 1, 0, 0, 1, 0, 0.000401974, -0.092219, 0.000401914, 0, -1, -1.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0926211, 0.000401795, 0, -1, -0.305561, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0930231, 0.000401795, 0, -1, 0.694439, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0934251, 0.000401914, 0, -1, 1.69444, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0938271, 0.000401914, 0, -1, 2.69444, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0942292, 0.000401914, 0, -1, 3.69444, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0946312, 0.000401974, 0, -1, 4.69443, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0950332, 0.000401974, 0, -1, 5.69443, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0954352, 0.000401914, 0, -1, 6.69443, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0958373, 0.000401914, 0, -1, 7.69443, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0962393, 0.000401914, 0, -1, 8.69443, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0966413, 0.000401795, 0, -1, 9.69443, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0970434, 0.000401974, 0, -1, 10.6944, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0974454, 0.000401795, 0, -1, 11.6944, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0978474, 0.000401974, 0, -1, 12.6944, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0982494, 0.000401914, 0, -1, 13.6944, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0986514, 0.000401914, 0, -1, 14.6944, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0990535, 0.000401974, 0, -1, 15.6944, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0994555)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_s4u06")
-train_packed_scene = ExtResource("14_uctha")
+good_train_packed_scene = ExtResource("2_wpxoc")
+bad_train_packed_scene = ExtResource("3_s4ny5")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_mecck")
@@ -89,12 +91,12 @@ directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.485939, 0.873993, 0, -0.873993, 0.485939, 0, 6.80806, 4.12882)
+transform = Transform3D(1, 0, 0, 0, 0.485939, 0.873993, 0, -0.873993, 0.485939, 0.0112672, 28.4396, 17.6089)
 projection = 1
 fov = 30.1
-size = 9.0
+size = 18.0
 near = 0.001
-far = 20.0
+far = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_epp8i")
@@ -111,7 +113,7 @@ shape = SubResource("BoxShape3D_omlow")
 
 [node name="TowerPlacer" type="Node" parent="." node_paths=PackedStringArray("valid_paths")]
 script = ExtResource("2_l7tu0")
-valid_paths = [NodePath("../Paths/MainPath1"), NodePath("../Paths/UpperPath"), NodePath("../Paths/MainPath2")]
+valid_paths = [NodePath("../Paths/UpperPath"), NodePath("../Paths/MainPath2")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -242,25 +244,26 @@ linked_branching_path = NodePath("../Paths/MainPath1")
 [node name="Paths" type="Node3D" parent="."]
 
 [node name="MainPath1" parent="Paths" node_paths=PackedStringArray("alternate_path", "connected_path") instance=ExtResource("13_p5ck2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0170145, 0, 0.0170143)
 curve = SubResource("Curve3D_omls0")
 alternate_path = NodePath("../UpperPath")
 connected_path = NodePath("../MainPath2")
 
 [node name="MultiMeshInstance3D" parent="Paths/MainPath1" index="2"]
-multimesh = SubResource("MultiMesh_4taj1")
+multimesh = SubResource("MultiMesh_mynpn")
 
 [node name="UpperPath" parent="Paths" node_paths=PackedStringArray("connected_path") instance=ExtResource("12_cd1oc")]
 curve = SubResource("Curve3D_foxa8")
 connected_path = NodePath("../MainPath2")
 
 [node name="MultiMeshInstance3D" parent="Paths/UpperPath" index="2"]
-multimesh = SubResource("MultiMesh_ljcgk")
+multimesh = SubResource("MultiMesh_0w3dk")
 
 [node name="MainPath2" parent="Paths" instance=ExtResource("12_cd1oc")]
 curve = SubResource("Curve3D_kyesq")
 
 [node name="MultiMeshInstance3D" parent="Paths/MainPath2" index="2"]
-multimesh = SubResource("MultiMesh_holep")
+multimesh = SubResource("MultiMesh_bu8tl")
 
 [editable path="Paths/MainPath1"]
 [editable path="Paths/UpperPath"]
