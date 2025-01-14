@@ -24,7 +24,8 @@ var _start_progress_ratio = 0.0
 # --- public methods ---
 func start(train_car : TrainCar, path : TrackPath, speed : float) -> void:
 	path.add_child(self)
-	remote_transform.remote_path = train_car.get_path()
+	# call deferred so the train cars dont flash on screen for a frame
+	remote_transform.set_remote_node.call_deferred(train_car.get_path())
 	
 	var next_path : TrackPath = await follow_path(path, speed)
 	while next_path != null:

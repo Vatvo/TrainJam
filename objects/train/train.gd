@@ -66,6 +66,8 @@ extends Node3D
 # --- signals ---
 
 # --- method overrides ---
+func _ready():
+	position = Vector3.ONE * 999.9
 
 # --- public methods ---
 func start_on_follow_path(path : TrackPath) -> void:

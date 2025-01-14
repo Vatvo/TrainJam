@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2k5ei7ygajkm"]
+
+[ext_resource type="PackedScene" uid="uid://co8qt7o6pchfw" path="res://objects/train/train.tscn" id="1_8xeh8"]
+[ext_resource type="PackedScene" uid="uid://cqv7r8v6h4vxq" path="res://objects/train_car/premade_train_cars/good_train_car.tscn" id="2_22qxi"]
+
+[node name="GoodTrain" instance=ExtResource("1_8xeh8")]
+train_head_packed_scene = ExtResource("2_22qxi")
+middle_segments_packed_scene = ExtResource("2_22qxi")
+caboose_packed_scene = ExtResource("2_22qxi")
