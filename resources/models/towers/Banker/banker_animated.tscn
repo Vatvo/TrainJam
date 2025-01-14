@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs4hywfsjs34i"]
+
+[ext_resource type="PackedScene" uid="uid://m14i3mcccwsg" path="res://resources/models/towers/Banker/banker.glb" id="1_2atrx"]
+
+[node name="BankerAnimated" instance=ExtResource("1_2atrx")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(-0.133512, -0.000455957, -5.59969)
+bones/0/rotation = Quaternion(0.706882, 0.0181326, -0.016957, 0.706895)
+bones/2/rotation = Quaternion(1.24174e-05, -0.00111045, 0.0331272, 0.999451)
+bones/3/rotation = Quaternion(9.10698e-06, -0.000814406, 0.0242955, 0.999704)
+bones/4/rotation = Quaternion(-3.72534e-06, 0.000333149, -0.00993858, 0.999951)
+bones/5/rotation = Quaternion(1.62339e-05, -0.00145173, 0.0433085, 0.999061)
+
+[node name="TopHat" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.991291, 0.00440863, 0.131617, 0.00441515, 0.99999, -0.000242259, -0.131617, 0.000341007, -0.991301, 0.304009, -0.00111371, -1.77498)
+
+[node name="AnimationPlayer" parent="." index="6"]
+autoplay = "Squirm"
