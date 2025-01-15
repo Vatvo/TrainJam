@@ -20,6 +20,7 @@ func modulate_card(card: Card):
 		
 func _process(delta):
 	gold += 1
+	$"../Dollar/MoneyLabel".text = str(gold)
 	for child in self.get_children():
 		if child.get_script() == Card:
 			modulate_card(child)

@@ -32,6 +32,7 @@ func start(train_car : TrainCar, path : TrackPath, speed : float) -> void:
 		await transfer_paths(next_path, speed)
 		next_path = await follow_path(next_path, speed)
 	if is_instance_valid(train_car):
+		train_car.good = !train_car.good
 		train_car.queue_free()
 
 ## returns the connected path

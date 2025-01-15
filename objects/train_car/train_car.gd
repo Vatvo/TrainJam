@@ -2,6 +2,7 @@ class_name TrainCar
 extends Area3D
 
 # --- exports ---
+@export var good : bool = false
 
 # --- node linkers ---
 @export_subgroup("Node Linkers")
@@ -23,6 +24,12 @@ extends Area3D
 # --- signals ---
 
 # --- method overrides ---
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if good:
+			game_manager.add_health(-50)
+		else:
+			game_manager.add_money(200)
 
 # --- public methods ---
 func get_length() -> float:

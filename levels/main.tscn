@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://12koe6sah6r1"]
+[gd_scene load_steps=36 format=3 uid="uid://12koe6sah6r1"]
 
 [ext_resource type="Script" path="res://objects/main/game_manager.gd" id="1_mecck"]
 [ext_resource type="Script" path="res://levels/main.gd" id="1_s4u06"]
@@ -11,12 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://4hjn47x7l0jo" path="res://Images/dollar.webp" id="5_x2jtb"]
 [ext_resource type="Texture2D" uid="uid://vjdrmpaoa3ny" path="res://Images/Untitled.png" id="6_kcut4"]
 [ext_resource type="Texture2D" uid="uid://rl63h56uckpi" path="res://Images/pause.webp" id="7_drara"]
+[ext_resource type="Texture2D" uid="uid://c6m7fbmygxp01" path="res://resources/textures/tower_icons/attacker.png" id="7_k8w2y"]
 [ext_resource type="Texture2D" uid="uid://1rfcwo8ib7bq" path="res://Images/heart.webp" id="8_w1i4s"]
+[ext_resource type="PackedScene" uid="uid://b51mcg6lxfngh" path="res://objects/tower/premade/attacker.tscn" id="9_7txyl"]
+[ext_resource type="Texture2D" uid="uid://ctuey1d57xqoh" path="res://resources/textures/tower_icons/banker.png" id="10_147go"]
 [ext_resource type="PackedScene" uid="uid://d0ewamj2o5p68" path="res://objects/tower/tower.tscn" id="10_s0ouj"]
+[ext_resource type="PackedScene" uid="uid://klbobs520fyj" path="res://objects/tower/premade/banker.tscn" id="11_m026b"]
+[ext_resource type="Texture2D" uid="uid://t80d82qbghyr" path="res://resources/textures/tower_icons/healer.png" id="11_xmi3y"]
 [ext_resource type="PackedScene" uid="uid://c81mie7ypw2nu" path="res://objects/track_path/track_path.tscn" id="12_cd1oc"]
 [ext_resource type="PackedScene" uid="uid://deydaq8vxmx7h" path="res://objects/lever/lever.tscn" id="12_sbfb4"]
 [ext_resource type="PackedScene" uid="uid://cjj73ihoy0dfu" path="res://objects/track_path/branching_track_path/branching_track_path.tscn" id="13_p5ck2"]
+[ext_resource type="PackedScene" uid="uid://b8pdylmyum2pi" path="res://objects/tower/premade/healer.tscn" id="13_vt1gm"]
 [ext_resource type="ArrayMesh" uid="uid://b6v6sf4ao7o8e" path="res://resources/models/rails/plank_01_Cube_001.res" id="14_ucayg"]
+[ext_resource type="Script" path="res://levels/lose_screen.gd" id="20_56o5v"]
+[ext_resource type="Script" path="res://randomizable_timer.gd" id="25_hxs8o"]
 
 [sub_resource type="Environment" id="Environment_epp8i"]
 background_color = Color(0.699653, 0.699653, 0.699653, 1)
@@ -30,46 +38,46 @@ material = SubResource("StandardMaterial3D_j2ysq")
 size = Vector2(32, 18)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omlow"]
-size = Vector3(20.9, 0.2, 10.6)
+size = Vector3(45.9, 0.2, 26.9)
 
 [sub_resource type="Curve3D" id="Curve3D_omls0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -17.0481, 0.0206647, -0.0164528, 0, 0, 0, 0, 0, 0, -12.6033, 4.76837e-07, -0.00116253),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -21.917, 0, -0.0170143, 0, 0, 0, 0, 0, 0, -9.01701, 0, -0.0170143),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[sub_resource type="MultiMesh" id="MultiMesh_mynpn"]
+[sub_resource type="MultiMesh" id="MultiMesh_rdrvv"]
 transform_format = 1
-instance_count = 4
+instance_count = 12
 mesh = ExtResource("14_ucayg")
-buffer = PackedFloat32Array(-0.0034399, 0.00464889, -0.999983, -16.5481, 0, 0.999989, 0.00464892, 0.0183402, 0.999994, 1.59918e-05, -0.00343987, -0.0147328, -0.0034399, 0.00464889, -0.999983, -15.5482, 0, 0.999989, 0.00464892, 0.0136913, 0.999994, 1.59918e-05, -0.00343987, -0.0112929, -0.0034399, 0.00464889, -0.999983, -14.5482, -4.65661e-10, 0.999989, 0.00464892, 0.00904239, 0.999994, 1.59923e-05, -0.00343987, -0.00785299, -0.0034399, 0.00464889, -0.999983, -13.5482, -2.32831e-10, 0.999989, 0.00464892, 0.00439347, 0.999994, 1.59921e-05, -0.00343987, -0.00441307)
+buffer = PackedFloat32Array(0, 0, -1, -21.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -20.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -19.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -18.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -17.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -16.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -15.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -14.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -13.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -12.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -11.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143, 0, 0, -1, -10.417, 0, 1, 0, 0, 1, 0, 0, -0.0170143)
 
 [sub_resource type="Curve3D" id="Curve3D_foxa8"]
 _data = {
-"points": PackedVector3Array(-2.80656, 0.045495, 0.129072, 2.80656, -0.045495, -0.129072, -7.08908, 0.071353, -5.12055, -0.969407, 0.00425339, -0.0238516, 0.969407, -0.00425339, 0.0238516, 3.73197, 0.0167599, -5.10919, -1.89274, 1.90735e-06, -1.7913, 1.89274, -1.90735e-06, 1.7913, 7.35992, 0.0164795, -2.8952, -1.12066, 0.0162954, -0.700213, 1.12066, -0.0162954, 0.700213, 11.2903, -0.036499, -0.104829),
+"points": PackedVector3Array(-2.80656, 0.045495, 0.129072, 2.80656, -0.045495, -0.129072, -3.9, 0.1, -5.1, -0.969407, 0.00425339, -0.0238516, 0.969407, -0.00425339, 0.0238516, 3.73197, 0.0167599, -5.10919, -1.89274, 1.90735e-06, -1.7913, 1.89274, -1.90735e-06, 1.7913, 7.35992, 0.0164795, -2.8952, -1.12066, 0.0162954, -0.700213, 1.12066, -0.0162954, 0.700213, 11.2903, -0.036499, -0.104829),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
-[sub_resource type="MultiMesh" id="MultiMesh_0w3dk"]
+[sub_resource type="MultiMesh" id="MultiMesh_r7v7f"]
 transform_format = 1
-instance_count = 20
+instance_count = 16
 mesh = ExtResource("14_ucayg")
-buffer = PackedFloat32Array(0.0318458, 0.0126878, -0.999412, -6.5895, 0.000203784, 0.999919, 0.0127007, 0.0642273, 0.999493, -0.000608127, 0.0318406, -5.1396, 0.0165655, 0.00892946, -0.999823, -5.58984, 0.000369119, 0.99996, 0.00893681, 0.0536333, 0.999863, -0.000517096, 0.0165615, -5.1629, 0.00797379, 0.00683955, -0.999945, -4.58994, 0.000436895, 0.999977, 0.00684325, 0.0458246, 0.999968, -0.000491437, 0.00797062, -5.17484, 0.00221902, 0.00546215, -0.999983, -3.58997, 0.000472311, 0.999985, 0.00546321, 0.0397102, 0.999997, -0.000484426, 0.00221641, -5.17978, -0.00203836, 0.00446721, -0.999988, -2.58999, 0.000493431, 0.99999, 0.00446621, 0.0347687, 0.999998, -0.000484322, -0.00204054, -5.17978, -0.00541174, 0.00370712, -0.999978, -1.59, 0.000507196, 0.999993, 0.00370443, 0.0306997, 0.999985, -0.000487138, -0.00541359, -5.17599, -0.0082376, 0.00310656, -0.999961, -0.590034, 0.000516801, 0.999995, 0.00310241, 0.0273073, 0.999966, -0.000491224, -0.00823917, -5.16913, -0.0107331, 0.00262783, -0.999939, 0.409916, 0.000523932, 0.999996, 0.00262236, 0.0244547, 0.999942, -0.000495754, -0.0107345, -5.15962, -0.0130911, 0.00226121, -0.999912, 1.40984, 0.00052966, 0.999997, 0.00225447, 0.0220267, 0.999914, -0.0005001, -0.0130923, -5.1477, -0.0156034, 0.00205337, -0.999876, 2.40974, 0.000535007, 0.999998, 0.00204527, 0.0198955, 0.999878, -0.000503028, -0.0156045, -5.13339, -0.0196865, 0.00253346, -0.999803, 3.40958, 0.000543909, 0.999997, 0.00252324, 0.0177522, 0.999806, -0.000494128, -0.0196878, -5.11607, -0.262069, 0.00135382, -0.965048, 4.40124, 0.00117721, 0.999999, 0.00108316, 0.014975, 0.965048, -0.000852202, -0.262071, -5.01523, -0.532636, -4.36173e-05, -0.846344, 5.30655, 0.00116457, 0.999999, -0.000784443, 0.0151202, 0.846344, -0.00140345, -0.532635, -4.59953, -0.632749, 0.000149604, -0.774357, 6.11239, 0.0010662, 0.999999, -0.000678027, 0.0159093, 0.774356, -0.00125464, -0.632748, -4.00845, -0.673053, 0.000498469, -0.739594, 6.8674, 0.00103934, 0.999999, -0.000271852, 0.0163891, 0.739594, -0.000951659, -0.673053, -3.35291, -0.677085, 0.00161184, -0.735903, 7.59945, 0.00102774, 0.999999, 0.00124468, 0.0162744, 0.735904, 8.64377e-05, -0.677086, -2.67169, -0.636163, 0.00510889, -0.771538, 8.35237, 0.000832069, 0.999982, 0.00593551, 0.0128, 0.771554, 0.00313398, -0.636156, -2.01377, -0.576897, 0.00992499, -0.816757, 9.14579, 0.000158773, 0.999928, 0.0120387, 0.00392123, 0.816817, 0.0068154, -0.576856, -1.40555, -0.510363, 0.0146565, -0.859834, 9.98549, -0.00102914, 0.999844, 0.017654, -0.0111802, 0.859959, 0.00989481, -0.510268, -0.863227, -0.499734, 0.0136374, -0.866071, 10.853, -0.00126059, 0.999864, 0.0164715, -0.0290785, 0.866178, 0.00932312, -0.499649, -0.36622)
+buffer = PackedFloat32Array(0.0356318, 0.0150815, -0.999251, -3.40047, 0.000161438, 0.999886, 0.0150968, 0.0921916, 0.999365, -0.000699243, 0.0356253, -5.12026, 0.0201026, 0.0134086, -0.999708, -2.40096, 0.000383023, 0.99991, 0.013419, 0.0779779, 0.999798, -0.000652667, 0.0200956, -5.14768, 0.00872993, 0.0121433, -0.999888, -1.40115, 0.000528483, 0.999926, 0.0121484, 0.0652194, 0.999962, -0.000634479, 0.00872287, -5.16182, -0.000174761, 0.0111018, -0.999938, -0.401227, 0.000632062, 0.999938, 0.0111017, 0.0536079, 1, -0.000630083, -0.000181767, -5.16593, -0.00750935, 0.0101711, -0.99992, 0.598706, 0.000710119, 0.999948, 0.0101661, 0.0429778, 0.999972, -0.000633722, -0.00751618, -5.16199, -0.0138166, 0.00924578, -0.999862, 1.5986, 0.000771405, 0.999957, 0.009236, 0.0332728, 0.999904, -0.000643689, -0.0138231, -5.15124, -0.0194756, 0.00812289, -0.999777, 2.59842, 0.000820729, 0.999967, 0.00810844, 0.0245712, 0.99981, -0.00066263, -0.0194816, -5.13453, -0.0243713, 0.00551043, -0.999688, 3.59815, 0.000856013, 0.999985, 0.0054912, 0.0174393, 0.999703, -0.000721918, -0.0243756, -5.11247, -0.330207, 0.000911331, -0.943908, 4.58125, 0.00152601, 0.999999, 0.000431643, 0.0148356, 0.943907, -0.00129788, -0.330208, -4.95922, -0.559824, 0.000117255, -0.828612, 5.46426, 0.00143386, 0.999999, -0.000827234, 0.0152734, 0.828611, -0.00165122, -0.559823, -4.49613, -0.643109, 0.000405048, -0.765774, 6.25764, 0.0013531, 0.999999, -0.000607414, 0.016031, 0.765773, -0.0014268, -0.643109, -3.88816, -0.677751, 0.000761355, -0.735291, 7.00647, 0.0013334, 0.999999, -0.000193612, 0.016433, 0.73529, -0.00111166, -0.677751, -3.22552, -0.670546, 0.00237693, -0.741864, 7.73881, 0.00130886, 0.999997, 0.00202095, 0.0159659, 0.741867, 0.000384147, -0.670548, -2.54461, -0.626474, 0.00610267, -0.779419, 8.49862, 0.00104692, 0.999975, 0.0069881, 0.0115823, 0.779442, 0.00356187, -0.626465, -1.8947, -0.563821, 0.0110996, -0.825822, 9.30077, 0.000252963, 0.999912, 0.0132668, 0.00152337, 0.825897, 0.00727121, -0.563774, -1.29812, -0.501393, 0.015269, -0.865085, 10.1482, -0.00091985, 0.999834, 0.0181806, -0.0145606, 0.865219, 0.00991136, -0.501296, -0.767839)
 
 [sub_resource type="Curve3D" id="Curve3D_kyesq"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -6.80556, 0, -0.0904099, 0, 0, 0, 0, 0, 0, 17.0488, 0, -0.1),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.8, 0, -0.1, 0, 0, 0, 0, 0, 0, 17.0488, 0, -0.1),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[sub_resource type="MultiMesh" id="MultiMesh_bu8tl"]
+[sub_resource type="MultiMesh" id="MultiMesh_ak2ld"]
 transform_format = 1
-instance_count = 23
+instance_count = 20
 mesh = ExtResource("14_ucayg")
-buffer = PackedFloat32Array(0.000401914, 0, -1, -6.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0906109, 0.000401914, 0, -1, -5.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0910129, 0.000401795, 0, -1, -4.30556, 0, 1, 0, 0, 1, 0, 0.000401795, -0.091415, 0.000401914, 0, -1, -3.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.091817, 0.000401974, 0, -1, -2.30556, 0, 1, 0, 0, 1, 0, 0.000401974, -0.092219, 0.000401914, 0, -1, -1.30556, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0926211, 0.000401795, 0, -1, -0.305561, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0930231, 0.000401795, 0, -1, 0.694439, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0934251, 0.000401914, 0, -1, 1.69444, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0938271, 0.000401914, 0, -1, 2.69444, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0942292, 0.000401914, 0, -1, 3.69444, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0946312, 0.000401974, 0, -1, 4.69443, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0950332, 0.000401974, 0, -1, 5.69443, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0954352, 0.000401914, 0, -1, 6.69443, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0958373, 0.000401914, 0, -1, 7.69443, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0962393, 0.000401914, 0, -1, 8.69443, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0966413, 0.000401795, 0, -1, 9.69443, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0970434, 0.000401974, 0, -1, 10.6944, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0974454, 0.000401795, 0, -1, 11.6944, 0, 1, 0, 0, 1, 0, 0.000401795, -0.0978474, 0.000401974, 0, -1, 12.6944, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0982494, 0.000401914, 0, -1, 13.6944, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0986514, 0.000401914, 0, -1, 14.6944, 0, 1, 0, 0, 1, 0, 0.000401914, -0.0990535, 0.000401974, 0, -1, 15.6944, 0, 1, 0, 0, 1, 0, 0.000401974, -0.0994555)
+buffer = PackedFloat32Array(0, 0, -1, -3.3, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, -2.3, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, -1.3, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, -0.3, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 0.700001, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 1.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 2.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 3.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 4.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 5.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 6.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 7.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 8.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 9.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 10.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 11.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 12.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 13.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 14.7, 0, 1, 0, 0, 1, 0, 0, -0.1, 0, 0, -1, 15.7, 0, 1, 0, 0, 1, 0, 0, -0.1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_s4u06")
@@ -108,7 +116,7 @@ mesh = SubResource("PlaneMesh_2cy4w")
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, -0.1, -1.25)
 shape = SubResource("BoxShape3D_omlow")
 
 [node name="TowerPlacer" type="Node" parent="." node_paths=PackedStringArray("valid_paths")]
@@ -119,6 +127,7 @@ valid_paths = [NodePath("../Paths/UpperPath"), NodePath("../Paths/MainPath2")]
 
 [node name="Shop" type="Node" parent="CanvasLayer"]
 script = ExtResource("2_u5dic")
+gold = 2000
 
 [node name="Slot 1" type="Button" parent="CanvasLayer/Shop"]
 z_index = 1
@@ -126,9 +135,9 @@ offset_left = 46.0
 offset_top = 906.0
 offset_right = 182.0
 offset_bottom = 1042.0
-icon = ExtResource("3_ogqp5")
+icon = ExtResource("7_k8w2y")
 script = ExtResource("4_qi30k")
-tower = ExtResource("10_s0ouj")
+tower = ExtResource("9_7txyl")
 price = 500
 
 [node name="Slot 2" type="Button" parent="CanvasLayer/Shop"]
@@ -137,9 +146,9 @@ offset_left = 228.0
 offset_top = 906.0
 offset_right = 364.0
 offset_bottom = 1042.0
-icon = ExtResource("3_ogqp5")
+icon = ExtResource("10_147go")
 script = ExtResource("4_qi30k")
-tower = ExtResource("10_s0ouj")
+tower = ExtResource("11_m026b")
 price = 800
 
 [node name="Slot 3" type="Button" parent="CanvasLayer/Shop"]
@@ -148,12 +157,13 @@ offset_left = 427.0
 offset_top = 906.0
 offset_right = 563.0
 offset_bottom = 1042.0
-icon = ExtResource("3_ogqp5")
+icon = ExtResource("11_xmi3y")
 script = ExtResource("4_qi30k")
-tower = ExtResource("10_s0ouj")
+tower = ExtResource("13_vt1gm")
 price = 1100
 
 [node name="Slot 4" type="Button" parent="CanvasLayer/Shop"]
+visible = false
 z_index = 1
 offset_left = 618.0
 offset_top = 906.0
@@ -165,6 +175,7 @@ tower = ExtResource("10_s0ouj")
 price = 1400
 
 [node name="Slot 5" type="Button" parent="CanvasLayer/Shop"]
+visible = false
 z_index = 1
 offset_left = 838.0
 offset_top = 909.0
@@ -176,6 +187,7 @@ tower = ExtResource("10_s0ouj")
 price = 1700
 
 [node name="Slot 6" type="Button" parent="CanvasLayer/Shop"]
+visible = false
 z_index = 1
 offset_left = 1055.0
 offset_top = 906.0
@@ -187,6 +199,7 @@ tower = ExtResource("10_s0ouj")
 price = 2000
 
 [node name="Slot 7" type="Button" parent="CanvasLayer/Shop"]
+visible = false
 z_index = 1
 offset_left = 1266.0
 offset_top = 909.0
@@ -198,6 +211,7 @@ tower = ExtResource("10_s0ouj")
 price = 2300
 
 [node name="Slot 8" type="Button" parent="CanvasLayer/Shop"]
+visible = false
 z_index = 1
 offset_left = 1476.0
 offset_top = 906.0
@@ -223,11 +237,21 @@ position = Vector2(1273.25, 36.25)
 scale = Vector2(0.1375, 0.1375)
 texture = ExtResource("5_x2jtb")
 
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/Dollar"]
+offset_left = 274.545
+offset_top = -241.818
+offset_right = 474.545
+offset_bottom = 236.182
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 350
+text = "0"
+
 [node name="Untitled" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(960, 540)
 texture = ExtResource("6_kcut4")
 
 [node name="Pause" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 position = Vector2(41, 37)
 scale = Vector2(0.0983333, 0.0983333)
 texture = ExtResource("7_drara")
@@ -237,8 +261,57 @@ position = Vector2(1621, 33)
 scale = Vector2(0.138672, 0.138672)
 texture = ExtResource("8_w1i4s")
 
+[node name="HealthLabel" type="Label" parent="CanvasLayer/Heart"]
+offset_left = 274.028
+offset_top = -237.972
+offset_right = 474.028
+offset_bottom = 240.028
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 350
+text = "0"
+
+[node name="LoseScreen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_56o5v")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/LoseScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.596078)
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseScreen"]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 153.0
+offset_right = 1661.0
+offset_bottom = 426.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 200
+text = "Oh no you lost!"
+
+[node name="Button" type="Button" parent="CanvasLayer/LoseScreen"]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 487.0
+offset_right = 1229.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 100
+text = "main menu"
+
 [node name="Lever" parent="." node_paths=PackedStringArray("linked_branching_path") instance=ExtResource("12_sbfb4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7, 0, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3, 0, 1.5)
 linked_branching_path = NodePath("../Paths/MainPath1")
 
 [node name="Paths" type="Node3D" parent="."]
@@ -250,20 +323,42 @@ alternate_path = NodePath("../UpperPath")
 connected_path = NodePath("../MainPath2")
 
 [node name="MultiMeshInstance3D" parent="Paths/MainPath1" index="2"]
-multimesh = SubResource("MultiMesh_mynpn")
+multimesh = SubResource("MultiMesh_rdrvv")
 
 [node name="UpperPath" parent="Paths" node_paths=PackedStringArray("connected_path") instance=ExtResource("12_cd1oc")]
 curve = SubResource("Curve3D_foxa8")
 connected_path = NodePath("../MainPath2")
 
 [node name="MultiMeshInstance3D" parent="Paths/UpperPath" index="2"]
-multimesh = SubResource("MultiMesh_0w3dk")
+multimesh = SubResource("MultiMesh_r7v7f")
 
 [node name="MainPath2" parent="Paths" instance=ExtResource("12_cd1oc")]
 curve = SubResource("Curve3D_kyesq")
 
 [node name="MultiMeshInstance3D" parent="Paths/MainPath2" index="2"]
-multimesh = SubResource("MultiMesh_bu8tl")
+multimesh = SubResource("MultiMesh_ak2ld")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="GoodTrainSpawner" type="Timer" parent="Timers"]
+script = ExtResource("25_hxs8o")
+min = 7.0
+max = 10.0
+
+[node name="BadTrainSpanwer" type="Timer" parent="Timers"]
+script = ExtResource("25_hxs8o")
+min = 7.0
+max = 10.0
+
+[node name="TimeRamper" type="Timer" parent="Timers"]
+script = ExtResource("25_hxs8o")
+min = 30.0
+max = 60.0
+
+[connection signal="pressed" from="CanvasLayer/LoseScreen/Button" to="CanvasLayer/LoseScreen" method="_on_button_pressed"]
+[connection signal="timeout" from="Timers/GoodTrainSpawner" to="." method="spawn_good_train"]
+[connection signal="timeout" from="Timers/BadTrainSpanwer" to="." method="spawn_bad_train"]
+[connection signal="timeout" from="Timers/TimeRamper" to="." method="decrease_timers"]
 
 [editable path="Paths/MainPath1"]
 [editable path="Paths/UpperPath"]

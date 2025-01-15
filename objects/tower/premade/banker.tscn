@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://klbobs520fyj"]
+
+[ext_resource type="PackedScene" uid="uid://d0ewamj2o5p68" path="res://objects/tower/tower.tscn" id="1_5ro0f"]
+[ext_resource type="PackedScene" uid="uid://bs4hywfsjs34i" path="res://resources/models/towers/Banker/banker_animated.tscn" id="2_0rn6v"]
+
+[node name="Banker" instance=ExtResource("1_5ro0f")]
+tower_health = 5
+tower_damage = -2
+
+[node name="BankerAnimated" parent="." index="1" instance=ExtResource("2_0rn6v")]

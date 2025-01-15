@@ -9,6 +9,7 @@ size = Vector3(1.6, 1.95, 6.05)
 [sub_resource type="BoxMesh" id="BoxMesh_h8ltf"]
 
 [node name="GoodTrainCar" instance=ExtResource("1_3t02h")]
+good = true
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975, -0.025)

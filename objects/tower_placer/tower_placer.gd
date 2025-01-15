@@ -39,16 +39,16 @@ func _process(delta):
 		
 		validPlacement = check_valid_placement()
 		if validPlacement["valid"]:
-			#var meshes = current_tower.mesh_object.meshes
-			#for mesh in meshes:
-			#	mesh.surface_material_override[0] = validMaterial
+			for child : Node in get_all_children(current_tower):
+				if child is MeshInstance3D:
+					child.material_overlay = validMaterial
 			current_tower.position = validPlacement["position"]
 			
 		else:
 			pass
-			#var meshes = current_tower.mesh_object.meshes
-			#for mesh in meshes:
-			#	mesh.surface_material_override[0] = invalidMaterial
+			for child : Node in get_all_children(current_tower):
+				if child is MeshInstance3D:
+					child.material_overlay = invalidMaterial
 		
 		
 			
@@ -62,11 +62,9 @@ func check_valid_placement():
 	
 
 func _input(event):
-	if event is InputEventMouseButton && validPlacement["valid"]:
-		isPlacing = false
-		current_tower = null
+	if event is InputEventMouseButton and event.is_pressed() && validPlacement["valid"] && isPlacing:
 		place_tower()
-	elif event is InputEventMouseButton && !validPlacement["valid"] && isPlacing:
+	elif event is InputEventMouseButton and event.is_pressed() && !validPlacement["valid"] && isPlacing:
 		abort_placement()
 		
 func begin_placement(tower: PackedScene):
@@ -76,10 +74,17 @@ func begin_placement(tower: PackedScene):
 	
 func place_tower():
 	isPlacing = false
+	for child : Node in get_all_children(current_tower):
+		if child is MeshInstance3D:
+			child.material_overlay = null
 	current_tower = null
 
 func abort_placement():
 	current_tower.queue_free()
 	isPlacing = false
-	
-	
+
+func get_all_children(in_node,arr:=[]):
+	arr.push_back(in_node)
+	for child in in_node.get_children():
+		arr = get_all_children(child,arr)
+	return arr

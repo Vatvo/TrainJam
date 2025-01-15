@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b51mcg6lxfngh"]
+
+[ext_resource type="PackedScene" uid="uid://d0ewamj2o5p68" path="res://objects/tower/tower.tscn" id="1_e5asu"]
+[ext_resource type="PackedScene" uid="uid://pcsrh4xvl46y" path="res://resources/models/towers/BasicTower/basic_tower_animated.tscn" id="2_j5r6k"]
+
+[node name="Attacker" instance=ExtResource("1_e5asu")]
+tower_health = 3
+
+[node name="BasicTowerAnimated" parent="." index="1" instance=ExtResource("2_j5r6k")]
